@@ -103,3 +103,52 @@ For common issues and solutions, refer to the Troubleshooting Guide.
 
 Document any changes, updates, or releases to the chatbot code. Include dates and version numbers.
 
+
+# Include the dataset source and a brief description for chatbot in python
+
+# Dataset Source:
+
+In this example, I'll use a small custom dataset to create a rule-based chatbot that can respond to common user intents, such as greetings, inquiries about the weather, and requests for jokes.
+
+# Description of the Chatbot:
+
+We'll create a simple rule-based chatbot in Python using a predefined dataset that maps user intents to chatbot responses. The chatbot will recognize user inputs and respond based on the intent detected. Here's the Python code:
+
+# Define a dataset for common conversation intents
+
+dataset = {
+"greetings": {
+"examples": ["hello", "hi", "hey", "howdy"],
+"responses": ["Hello! How can I help you?", "Hi there!", "Hey!"]
+},
+"weather": {
+"examples": ["What's the weather like today?", "Tell me the weather forecast."],
+"responses": ["I'm sorry, I don't have access to weather information."]
+},
+"jokes": {
+"examples": ["Tell me a joke", "Can you make me laugh?"],
+"responses": ["Sure, here's a joke: Why did the scarecrow win an award? Because he was outstanding in his field!"]
+},
+"goodbye": {
+"examples": ["goodbye", "bye", "see you later"],
+"responses": ["Goodbye! Have a great day.", "See you later!"]
+}
+}
+
+# Function to get the chatbot's response
+def chatbot_response(user_input):
+user_input = user_input.lower()
+for intent, data in dataset.items():
+for example in data["examples"]:
+if example in user_input:
+return data["responses"][0] # Respond with the first response for the matched intent
+return "I'm sorry, I don't understand that."
+
+# User interaction loop
+while True:
+user_input = input("You: ")
+if user_input.lower() == "exit":
+print("Chatbot: Goodbye!")
+break
+response = chatbot_response(user_input)
+print("Chatbot:", response)
